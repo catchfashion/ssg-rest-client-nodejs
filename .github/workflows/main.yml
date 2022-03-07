@@ -17,8 +17,6 @@ jobs:
           npm ci
       - name: Lint
         run: npm run lint
-      - name: Test
-        run: npm test
       - name: Publish
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/beta')
         run: |

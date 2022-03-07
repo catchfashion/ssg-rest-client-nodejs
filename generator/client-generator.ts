@@ -5,7 +5,7 @@ import * as fs from "fs";
 
 import * as Types from "./types";
 
-import { Service } from "./service-discovery";
+import type { Service } from "./service-discovery";
 
 type Node = | {
   name: string;

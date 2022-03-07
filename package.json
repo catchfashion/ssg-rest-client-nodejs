@@ -1,7 +1,7 @@
 {
-  "name": "ssg-client",
+  "name": "@catchfashion/ssg-rest-client",
   "version": "0.0.1",
-  "description": "SSG Open API Client",
+  "description": "SSG Open API Rest Client",
   "main": "./dst/services/index.js",
   "exports": "./dst/services/index.js",
   "typings": "./dst/services/index.d.ts",

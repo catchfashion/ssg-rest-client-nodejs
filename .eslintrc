@@ -1,0 +1,6 @@
+{
+  "extends": "@catchfashion",
+  "rules": {
+    "dot-notation":"error"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@catchfashion/ssg-rest-client",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "SSG Open API Rest Client",
   "main": "./dst/services/index.js",
   "exports": "./dst/services/index.js",
@@ -17,6 +17,7 @@
     "lint:fix": "npm run lint -- --fix",
     "prepublishOnly": "npm run build"
   },
+  "files": ["dst"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/catchfashion/ssg-rest-client-nodejs.git"

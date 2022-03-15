@@ -17,7 +17,9 @@
     "lint:fix": "npm run lint -- --fix",
     "prepublishOnly": "npm run build"
   },
-  "files": ["dst"],
+  "files": [
+    "dst"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/catchfashion/ssg-rest-client-nodejs.git"
@@ -50,7 +52,7 @@
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "got": "^12.0.1"
+    "got": "^11.8.2"
   },
   "peerDependencies": {
     "@types/sinon": "^10.0.2"

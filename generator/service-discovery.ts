@@ -27,6 +27,7 @@ export class ServiceDiscovery {
       ).flatten()
       .compact()
       .flatten()
+      .uniq()
       .value();
 
     const services: Service[] = [];

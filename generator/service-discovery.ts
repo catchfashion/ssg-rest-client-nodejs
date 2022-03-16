@@ -36,7 +36,7 @@ export class ServiceDiscovery {
       try {
         const { body } = await this.__client.get(`cp/${name}.json`);
         services.push({
-          name,
+          name: _.kebabCase(name),
           spec: toJSON<Types.Spec>(body),
         });
       } catch (e) {

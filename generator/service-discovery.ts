@@ -40,8 +40,8 @@ export class ServiceDiscovery {
           name: _.kebabCase(name),
           spec: toJSON<Types.Spec>(body),
         });
-      } catch (e) {
-        console.error(`Failed to fetch '${name}' service.`);
+      } catch (e: any) {
+        console.error(`Failed to fetch '${name}' service. ${e.toString()}`);
       }
     }
     return services;

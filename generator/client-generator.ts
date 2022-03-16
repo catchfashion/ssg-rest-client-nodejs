@@ -56,7 +56,9 @@ export class ClientGenerator {
     const version = this.version();
     const path = this.path();
     const method = this.method();
-    const replacedPath = path.replace("{version}", version).replace(/^\/+/, "");
+    const replacedPath = version
+      ? path.replace("{version}", version).replace(/^\/+/, "")
+      : path;
 
     const RequestParamTypeName = `${serviceName}RequestParams`;
     const ResponseParamTypeName = `${serviceName}ResponseParams`;
@@ -83,17 +85,14 @@ export class ClientGenerator {
     `;
   }
 
-  private version(): string {
+  private version(): string | null {
     const versions = this.service.spec.contents[0].drawItem.requestURI.prop.simpleRows
       .find(({ simpleDatas }) => simpleDatas[0] === "version")
       ?.simpleOption.ko[0]?.versionDesc
       .match(/(\d.\d)/g);
     const version = versions?.length && _.last(versions);
 
-    if (!version) {
-      throw Error("API version not specified");
-    }
-    return version;
+    return version || null;
   }
 
   private path(): string {

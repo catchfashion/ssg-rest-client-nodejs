@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/catchfashion/ssg-rest-client-nodejs/compare/v1.0.2...v1.1.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* **client-generator:** handle duplicate field ([8977f02](https://github.com/catchfashion/ssg-rest-client-nodejs/commit/8977f02866ab336e264e2e3e4a7778007c02de5f))
+
+
+### Features
+
+* **discover:** improve discover ([3189c3e](https://github.com/catchfashion/ssg-rest-client-nodejs/commit/3189c3e0e64edfff22ae44d3dd62328cda576d71)), closes [#2](https://github.com/catchfashion/ssg-rest-client-nodejs/issues/2)
+
 ## [1.0.2](https://github.com/catchfashion/ssg-rest-client-nodejs/compare/v1.0.1...v1.0.2) (2022-03-08)
 
 

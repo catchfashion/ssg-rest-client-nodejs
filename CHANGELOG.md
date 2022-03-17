@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/catchfashion/ssg-rest-client-nodejs/compare/v1.0.1...v1.0.2) (2022-03-08)
+
+
+### Bug Fixes
+
+* **package.json:** add distribute folder ([64bbca5](https://github.com/catchfashion/ssg-rest-client-nodejs/commit/64bbca5b129f6f6772f69d50d5497695e5d4832f))
+
 ## [1.0.1](https://github.com/catchfashion/ssg-rest-client-nodejs/compare/v1.0.0...v1.0.1) (2022-03-08)
 
 

@@ -1,3 +1,20 @@
+export interface SpecList { // use left.json
+  menuList: SpecListItem[];
+}
+
+export interface SpecListItem {
+  name: string;
+  url: string;
+  list?: Array<{
+    name: string;
+    url: string;
+    list?: Array<{
+      name: string;
+      url: string;
+    }>;
+  }>;
+}
+
 export interface Spec {
   pageTitle: string;
   contents: [Content];

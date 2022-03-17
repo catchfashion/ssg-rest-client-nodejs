@@ -1,7 +1,8 @@
-import * as path from "path";
-import * as fs from "fs";
+import * as _ from "lodash";
+import got from "got";
 
-import * as Types from "./types";
+import type * as Types from "./types";
+import { toJSON } from "./helpers";
 
 export interface Service {
   name: string;
@@ -9,40 +10,40 @@ export interface Service {
 }
 
 export class ServiceDiscovery {
-  private static readonly files = [
-    "get-item-list",
-    "view-item",
-    "insert-item",
-    "update-item",
-  ];
+  private static readonly __client = got.extend({
+    prefixUrl: "https://eapi.ssgadm.com/resources/js/info",
+    responseType: "text",
+  });
 
   public static async discover(): Promise<Service[]> {
-    // @TODO: discover all api list
-    const dir = path.resolve(__dirname, ".", "api-specs");
+    const specList = toJSON<Types.SpecList>(
+      (await this.__client.get("layout/left.json")).body,
+    );
 
-    return await Promise.all(this.files.map(
-      async (file) => ({
-        name: file,
-        spec: this.specToJSON(
-          await fs.readFileSync(path.resolve(dir, `${file}.txt`), "utf8"),
-        ),
-      }),
-    ));
-  }
+    const urls = _.chain(specList.menuList)
+      .map((item) => 
+        item?.list?.map((subItem) => subItem.list?.map(({ url }) => url))
+          ?? item.list?.map((subItem) => subItem.url),
+      ).flatten()
+      .compact()
+      .flatten()
+      .uniq()
+      .value();
 
-  private static specToJSON(text: string): Types.Spec {
-    const jsonString = text
-      .replace(/'\s*\+\s*'/g, "") // remove concat
-      .replace(/[&<>"']/g, (elem) => {
-        return {
-          '"': "\\\"",
-          "'": "\"",
-        }[elem] ?? elem;
-      }) // change to single to double quote
-      .replace(/columnAlias/g, "\"columnAlias\"") // to json field
-      .replace(/\,(?!\s*?[\{\[\"\'\w])/g, "") // remove trailing comma
-      .replace(/\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g, (m, g) => g ? "," : m); // remove json comment
-
-    return JSON.parse(jsonString);
+    const services: Service[] = [];
+    for (const url of urls) {
+      const name = url.match(/\/(\w+).ssg/)![1];
+      
+      try {
+        const { body } = await this.__client.get(`cp/${name}.json`);
+        services.push({
+          name: _.kebabCase(name),
+          spec: toJSON<Types.Spec>(body),
+        });
+      } catch (e: any) {
+        console.error(`Failed to fetch '${name}' service. ${e.toString()}`);
+      }
+    }
+    return services;
   }
 }

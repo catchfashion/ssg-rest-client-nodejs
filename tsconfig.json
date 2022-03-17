@@ -7,7 +7,6 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "esModuleInterop": true,
     "lib": [
       "es2019"
     ]

@@ -161,7 +161,7 @@ export class ClientGenerator {
       }
     }
 
-    return tree;
+    return _.uniqBy(tree, (node) => node.name);
   }
 
   private renderType(tree: Tree): string {

@@ -16,7 +16,6 @@ export type UpdateTourItemRequestParams = {
       };
     }>;
     b2eAplRngCd?: string;
-    b2eAplRngCd?: string;
     b2cAplRngCd?: string;
     itemChrctDivCd?: string;
     itemChrctDtlCd?: string;
